@@ -1,0 +1,20 @@
+{% extends "posts/post_base.html" %}
+{% load humanize %}
+
+{% block pre_post_content %}
+<div class="col-md-4">
+
+</div>
+{% endblock %}
+{% block post_content %}
+<div class="row  justify-content-center">
+	<div class="col-md-8">
+		{% for post in post_list %}
+			{% include "posts/_post.html" with hide_delete=True %}
+		{% endfor %}
+	</div>
+	<div class="col-md-4">
+		Userlist
+	</div>
+</div>
+{% endblock %}

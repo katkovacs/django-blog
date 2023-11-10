@@ -1,0 +1,20 @@
+<div class="card w-75 m-5">
+	<a href="{% url 'posts:single' username=post.user.username pk=post.pk %}">
+		<img src="{{ post.post_pic.url}}" class="card-img-top" alt="{{ post.message }}">
+	</a>
+	<div class="card-body">
+	<h5 class="card-title"><a href="{% url 'posts:for_user' username=post.user.username %}">@{{ post.user.username }}</a></h5>
+		<p class="card-text">{{ post.message_html|safe }}</p>
+
+		<div class="text-end">
+			{% if user.is_authenticated and post.user == user and not hide_delete %}
+				<a href="{% url 'posts:delete' pk=post.pk %}" title="delete" class="btn btn-danger">
+					<span class="material-symbols-outlined">
+						delete
+					</span>
+					<span class="icon-label">Delete</span>
+				</a>
+			{% endif %}
+		</div>
+	</div>
+</div>

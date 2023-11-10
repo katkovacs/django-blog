@@ -9,9 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 
 w_key = os.environ.get('WEBHOOK_SECRET')
 
-class HomePage(TemplateView):
+# class HomePage(TemplateView):
 
-    template_name = 'index.html'
+#     template_name = 'index.html'
 
 
 @csrf_exempt

@@ -19,12 +19,14 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from posts import views as post_view
 
 urlpatterns = [
-    path('', views.HomePage.as_view(), name='home'),
+    path('', post_view.PostList.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('posts/', include('posts.urls'), name='posts'),
     path('update_server/', views.update, name='update'),
 ]
 
