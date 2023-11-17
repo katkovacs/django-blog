@@ -27,6 +27,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls'), name='accounts'),
     path('accounts/', include('django.contrib.auth.urls')),
     path('posts/', include('posts.urls'), name='posts'),
+    path('<slug:slug>/', include('user_profile.urls'), name='profile'),
     path('update_server/', views.update, name='update'),
 ]
 

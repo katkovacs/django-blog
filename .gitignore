@@ -159,5 +159,9 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# uploaded images
-media/
+# uploaded post images
+media/posts/images
+media/user_profile/pics
+
+# will need the default profile picture
+!media/user_profile/default_profile_pic.png

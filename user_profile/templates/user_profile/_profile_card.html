@@ -1,0 +1,27 @@
+<div class="d-sm-inline-flex flex-sm-wrap">
+  {% for userprofile in userprofile_list %}
+    <div class="card text-center shadow-sm overflow-hidden m-4" style="width: 12rem;">
+        <div class="card-body">
+          <a href="{% url 'user_profile:profile_detail' slug=userprofile.slug %}" class="text-decoration-none">
+            <h5 class="card-title">
+                <img class="rounded-circle profile-pic" src="{{ userprofile.profile_pic.url }}"
+                    alt="Pofile picture of {{ userprofile.slug }}"/>
+            </h5>
+            <p class="card-text"><strong>{{ userprofile.slug }}</strong></p>
+          </a>
+          <h6 class="card-subtitle mb-2 text-muted mt-3">
+            <a href="{% url 'user_profile:following' slug=userprofile.slug %}" class="text-decoration-none">
+              Following {{ userprofile.following_count }}
+            </a>
+          </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <a href="{% url 'user_profile:followers' slug=userprofile.slug %}" class="text-decoration-none">
+              Followers {{ userprofile.followers_count }}
+            </a>
+          </h6>
+        </div>
+    </div>
+  {% empty %}
+    <p class="m-4">No one here yet.</p>
+  {% endfor %}
+</div>

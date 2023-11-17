@@ -9,3 +9,10 @@
   'GRAD' 0,
   'opsz' 24
 }
+
+.profile-pic {
+  min-width: 60px;
+  min-height: 60px;
+  width: 60px;
+  height: 60px;
+}

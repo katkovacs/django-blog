@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="content-section">
+  <div class="media">
+    <img
+      class="rounded-circle profile-pic"
+      src="{{ user_details.userprofile.profile_pic.url }}"
+      alt="Pofile picture of {{ user_details.username }}"
+    />
+    <div class="media-body">
+      <h2 class="account-heading">{{ user_details.username }}</h2>
+      <p class="text-secondary">{{ user_details.email }}</p>
+      <p>Website: <a href="{{ user.userprofile.website }}">{{ user_details.userprofile.website }}</a></p>
+      <p>Bio: {{ user_details.userprofile.bio }}</p>
+      <p><a href="{% url 'user_profile:following' slug=user_details.username %}">
+        Following {{ user_details.userprofile.following_count }}
+      </a></p>
+      <p><a href="{% url 'user_profile:followers' slug=user_details.username %}">
+        Followers {{ user_details.userprofile.followers_count }}
+      </a></p>
+      <div class="">
+      {% if user.is_authenticated %}
+        {% if user_details == user %}
+          <a href="{% url 'user_profile:edit_profile' slug=user.username %}" title="delete" class="btn btn-outline-primary">
+            Update
+          </a>
+        {% else %}
+          {% if is_following %}
+            <form method="POST" action="{% url 'user_profile:unfollow' slug=user_details.username %}">
+              {% csrf_token %}
+              <button class="btn btn-outline-warning" type=submit>Unfollow</button>
+            </form>
+          {% else %}
+            <form method="POST" action="{% url 'user_profile:follow' slug=user_details.username %}">
+              {% csrf_token %}
+              <button class="btn btn-outline-primary" type=submit>Follow</button>
+            </form>
+          {% endif %}
+        {% endif %}
+			{% endif %}
+		</div>
+  </div>
+</div>
+{% endblock content %}

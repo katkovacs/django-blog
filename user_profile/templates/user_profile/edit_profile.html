@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="content-section">
+  <div class="media">
+    <img
+      class="rounded-circle account-img"
+      src="{{ user.userprofile.profile_pic.url }}"
+      alt="Profile picture of {{ user.username }}"
+    />
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+    </div>
+  </div>
+  <!-- FORM HERE -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Profile Info</legend>
+      {% bootstrap_form user_form %}
+      <!-- User form -->
+      {% bootstrap_form form %}
+      <!-- Profile form -->
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">
+        <span class="material-symbols-outlined">
+					save
+				</span>
+				<span class="icon-label">Save</span>
+      </button>
+    </div>
+  </form>
+</div>
+{% endblock content %}

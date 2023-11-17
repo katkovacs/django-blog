@@ -48,3 +48,11 @@ class SignUpForm(UserCreationForm):
         )
 
         user.email_user(subject, message, html_message=message)
+
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta:
+        model = user_model
+        fields = ['email']
