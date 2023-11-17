@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from posts.models import Post
 from PIL import Image
 
 class UserProfile(models.Model):
@@ -13,6 +14,7 @@ class UserProfile(models.Model):
     slug = models.SlugField(default="", null=False)
     followers = models.ManyToManyField(User, blank=True, related_name='followers')
     following = models.ManyToManyField(User, blank=True, related_name='following')
+    likes = models.ManyToManyField(Post, blank=True, related_name='post_likes')
 
     def __str__(self):
         return f'{self.user.username} Profile'
@@ -47,4 +49,8 @@ class UserProfile(models.Model):
     @property
     def following_count(self):
         return self.following.count()
-
+    
+    @property
+    def likes_count(self):
+        return self.likes.count()
+    

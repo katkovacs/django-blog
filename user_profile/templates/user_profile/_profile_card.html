@@ -19,6 +19,11 @@
               Followers {{ userprofile.followers_count }}
             </a>
           </h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <a href="{% url 'posts:user_likes' slug=userprofile.slug %}" class="text-decoration-none">
+              Likes {{ userprofile.likes_count }}
+            </a>
+          </h6>
         </div>
     </div>
   {% empty %}

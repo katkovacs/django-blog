@@ -1,0 +1,19 @@
+{% extends "posts/post_base.html" %}
+
+{% block prepost %}
+<div class="col-md-4">
+	<h1 class="font-cursive">@{{ user_likes_post.slug }}'s likes</h1>
+</div>
+{% endblock %}
+
+{% block post_content %}
+<div class="row justify-content-center">
+<div class="col-md-8">
+	{% for post in post_list %}
+		{% include "posts/_post.html" %}
+    {% empty %}
+        <p class="mt-4">Nothing here yet.</p>
+	{% endfor %}
+</div>
+</div>
+{% endblock %}
